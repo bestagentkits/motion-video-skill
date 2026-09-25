@@ -1,0 +1,8 @@
+{
+  "positive_global_styles": ["instrumental", "calm lo-fi hip-hop", "warm felt piano", "soft Rhodes keys", "gentle vinyl crackle", "airy pads", "hopeful and wistful", "end credits of an animated movie", "slow", "intimate"],
+  "negative_global_styles": ["vocals", "singing", "lyrics", "spoken word", "drums", "kick", "snare", "808", "bass drop", "guitar", "loud", "energetic"],
+  "sections": [
+    { "section_name": "Afterglow", "positive_local_styles": ["soft piano chords", "warm pad swells", "vinyl crackle", "tender and hopeful"], "negative_local_styles": ["drums"], "duration_ms": 14000, "lines": [] },
+    { "section_name": "Fade", "positive_local_styles": ["single sustained piano chord", "pads slowly fading to silence", "peaceful ending"], "negative_local_styles": ["drums", "new melody"], "duration_ms": 10000, "lines": [] }
+  ]
+}

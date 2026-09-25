@@ -1,0 +1,22 @@
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Skill pipeline output: generated media is never committed to this repository.
+multix-output/
+assets/videos/*/renders/
+assets/videos/*/assets/audio/
+
+# Packaged skill archive; rebuild it from skills/motion-video/ when needed.
+skills/*.zip
+
+# Agent session data
+.pi/tasks/
+
+# OS / editor
+.DS_Store
+Thumbs.db

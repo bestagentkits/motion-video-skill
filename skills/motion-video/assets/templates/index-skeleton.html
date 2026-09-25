@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+  motion-video composition skeleton (HyperFrames 0.7.99 + GSAP).
+  Copy to <project>/index.html, then run `node scripts/build-timeline.mjs` to inject window.TIMING.
+  Replace the style tokens and the scene markup with one of the style references
+  (references/style-glass-keynote.md or references/style-comic-spiderverse.md).
+-->
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>Motion video</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Fonts must be local files under assets/fonts so renders are deterministic. */
+      @font-face { font-family: "Be Vietnam Pro"; src: url("assets/fonts/BeVietnamPro-Bold.ttf") format("truetype"); font-weight: 700; font-display: block; }
+      :root { --bg: #070817; --ink: #f5f3ff; --accent: #c4b5fd; }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--bg); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: "Be Vietnam Pro", sans-serif; }
+      .layer { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+      .abs { position: absolute; }
+      .scene { opacity: 0; visibility: hidden; }
+      .hl .w { display: inline-block; }
+      .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+      #flash { background: #fff; opacity: 0; pointer-events: none; }
+      #fade { background: #000; opacity: 1; pointer-events: none; }
+      /* captions stay left of the signature; bottom band is reserved for them */
+      .cap { position: absolute; left: 0; width: 1660px; bottom: 44px; display: flex; justify-content: center; }
+      .cap-box { max-width: 1400px; padding: 12px 28px; border-radius: 18px; background: rgba(10, 8, 30, 0.72); font: 700 44px/1.3 "Be Vietnam Pro"; text-align: center; }
+      .cw { color: rgba(255, 255, 255, 0.5); }
+      #sig { right: 40px; bottom: 22px; width: 250px; height: 130px; }
+      #sig-txt { position: absolute; right: 18px; bottom: 26px; font: 72px/1 "Be Vietnam Pro"; color: #fff; }
+      #sig svg { position: absolute; left: 0; top: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1920" data-height="1080">
+      <div id="bg" class="layer"></div>
+      <div id="pulse" class="layer">
+        <div id="stage" class="layer">
+          <!-- one .scene per script scene; the WINDOWS table below maps selector -> scene id -> transition -->
+          <section id="sc01" class="scene layer">
+            <div class="abs hl" style="left: 120px; top: 380px; font-size: 120px">Title here</div>
+          </section>
+          <section id="sc02" class="scene layer">
+            <div class="abs hl" style="left: 120px; top: 380px; font-size: 96px">Feature one</div>
+          </section>
+        </div>
+      </div>
+      <div id="flash" class="layer"></div>
+      <div id="captions" class="layer"></div>
+      <div id="sig" class="abs">
+        <svg viewBox="0 0 250 130" width="250" height="130"><path id="sig-line" class="draw" pathLength="1" d="M20,112 C80,100 150,118 236,96" fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" /></svg>
+        <div id="sig-txt">Zuey</div>
+      </div>
+      <div id="fade" class="layer"></div>
+      <audio id="mix" src="assets/audio/mix.m4a" data-start="0" data-duration="60" data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>/*TIMING:BEGIN*/window.TIMING=null;/*TIMING:END*/</script>
+    <script>
+      (() => {
+        const T = window.TIMING;
+        const tl = gsap.timeline({ paused: true });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+
+        // ---------- lookups: every time comes from TIMING, never from wall clock ----------
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+        const SC = T.scenes;
+        const B = (n) => T.beat0 + T.beatLen * n; // time of quarter note n
+        const isKick = (n) => T.kick.some(([a, b]) => n >= a && n < b);
+        const hit = (sid, word, nth) => {
+          const h = SC[sid].lines.flatMap((l) => l.words).filter((w) => w[0] === word)[nth - 1];
+          if (!h) console.warn(`[timing] "${word}" #${nth} missing in ${sid}`);
+          return h;
+        };
+        const W = (sid, word, nth = 1) => (hit(sid, word, nth) || [0, SC[sid].start])[1]; // word onset
+        const WE = (sid, word, nth = 1) => (hit(sid, word, nth) || [0, 0, SC[sid].start])[2]; // word end
+        // seeded PRNG: Math.random would make every render different
+        const rng = (seed) => () => {
+          seed = (seed + 0x6d2b79f5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+
+        // headline words become spans for staggered entrances (build the DOM before any tween)
+        $$(".hl").forEach((h) => (h.innerHTML = h.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(" ")));
+
+        // ---------- animation vocabulary ----------
+        const pop = (e, t, o = {}) => tl.fromTo(e, { autoAlpha: 0, scale: o.from ?? 0.4 }, { autoAlpha: 1, scale: 1, duration: o.d ?? 0.45, ease: o.ease ?? "back.out(2.2)", stagger: o.stagger ?? 0 }, t);
+        const rise = (e, t, o = {}) => tl.fromTo(e, { autoAlpha: 0, y: o.y ?? 40 }, { autoAlpha: 1, y: 0, duration: o.d ?? 0.5, ease: o.ease ?? "power3.out", stagger: o.stagger ?? 0 }, t);
+        const draw = (e, t, d = 0.6, ease = "power2.inOut") => tl.fromTo(e, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: d, ease }, t);
+        const flash = (t, a = 0.45) => {
+          tl.to("#flash", { opacity: a, duration: 0.03, ease: "none" }, t);
+          tl.to("#flash", { opacity: 0, duration: 0.35, ease: "power2.out" }, t + 0.03);
+        };
+        const intro = (sc, t) => {
+          const ws = $$(".hl .w", sc);
+          if (ws.length) tl.fromTo(ws, { autoAlpha: 0, yPercent: 60 }, { autoAlpha: 1, yPercent: 0, duration: 0.42, ease: "power3.out", stagger: 0.05 }, t + 0.05);
+        };
+
+        // ---------- beat reactions: pulse the stage on kick downbeats ----------
+        tl.fromTo("#fade", { opacity: 1 }, { opacity: 0, duration: 0.3 }, 0);
+        for (let n = 0; B(n) < T.duration && n < T.outroBeat; n++) {
+          if (!isKick(n) || n % 4) continue;
+          tl.to("#pulse", { scale: 1.01, duration: 0.05, ease: "power1.out" }, B(n));
+          tl.to("#pulse", { scale: 1, duration: 0.33, ease: "power2.out" }, B(n) + 0.05);
+        }
+
+        // ---------- scene windows: [selector, scene id, transition in] ----------
+        const WINDOWS = [
+          ["#sc01", "s01-cover", "none"],
+          ["#sc02", "s02-power-01", "up"],
+        ];
+        WINDOWS.forEach(([sel, sid, kind], i) => {
+          const sc = $(sel);
+          const t0 = SC[sid].start;
+          const t1 = i < WINDOWS.length - 1 ? SC[WINDOWS[i + 1][1]].start : T.duration;
+          if (kind === "none") tl.set(sc, { autoAlpha: 1 }, t0);
+          else if (kind === "up") tl.fromTo(sc, { autoAlpha: 0, y: 110 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, t0);
+          else if (kind === "fade") tl.fromTo(sc, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.2, ease: "power1.inOut" }, t0);
+          if (i < WINDOWS.length - 1) tl.to(sc, { autoAlpha: 0, duration: 0.2, ease: "power2.in" }, t1 - 0.2);
+          if (i > 0) flash(t0, isKick(Math.round((t0 - T.beat0) / T.beatLen)) ? 0.3 : 0.14);
+          intro(sc, t0);
+        });
+        T.drops.forEach((n) => flash(B(n), 0.8));
+
+        // ---------- per-scene choreography: key every reveal to a spoken word ----------
+        {
+          const sid = "s02-power-01";
+          pop("#sc02 .hl", W(sid, "offline") - 0.1);
+        }
+
+        // ---------- signature ----------
+        tl.fromTo("#sig-txt", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(-20% -20% -20% 0%)", duration: 0.6, ease: "steps(8)" }, 1.0);
+        draw("#sig-line", 1.45, 0.35, "power2.out");
+
+        // ---------- Vietnamese karaoke captions ----------
+        const capLayer = $("#captions");
+        T.captions.forEach((c) => {
+          const cap = document.createElement("div");
+          cap.className = "cap";
+          const box = document.createElement("div");
+          box.className = "cap-box";
+          const spans = c.words.map(([txt], j) => {
+            if (j) box.append(" ");
+            const s = document.createElement("span");
+            s.className = "cw";
+            s.textContent = txt;
+            box.append(s);
+            return s;
+          });
+          cap.append(box);
+          capLayer.append(cap);
+          tl.fromTo(cap, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.14, ease: "power2.out" }, c.start);
+          tl.to(cap, { autoAlpha: 0, duration: 0.12, ease: "power1.in" }, Math.max(c.start + 0.3, c.end - 0.12));
+          c.words.forEach(([, s], j) => {
+            tl.to(spans[j], { color: "#e9d5ff", duration: 0.05 }, s);
+            const next = j < c.words.length - 1 ? c.words[j + 1][1] : Math.max(s + 0.35, c.end - 0.4);
+            tl.to(spans[j], { color: "#ffffff", duration: 0.12 }, next);
+          });
+        });
+
+        tl.to("#fade", { opacity: 1, duration: 1.0, ease: "power1.in" }, T.duration - 1.0);
+        tl.set({}, {}, T.duration); // pin the timeline length to the video duration
+      })();
+    </script>
+  </body>
+</html>

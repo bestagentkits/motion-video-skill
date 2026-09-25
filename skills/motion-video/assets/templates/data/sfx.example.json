@@ -1,0 +1,21 @@
+[
+  { "id": "swing", "prompt": "fast superhero web-swing whoosh, tight airy swish passing close by, animated movie", "duration": 0.8 },
+  { "id": "glitch-warp", "prompt": "multiverse dimension glitch warp, digital stutter with a downward pitch bend and bass thump, animated movie", "duration": 1.2 },
+  { "id": "punch", "prompt": "cartoon comic book punch impact, snappy pow hit with a short bass thump", "duration": 0.6 },
+  { "id": "boom", "prompt": "huge cinematic trailer impact boom with deep 808 sub bass drop and short reverb tail", "duration": 1.8 },
+  { "id": "scratch", "prompt": "quick hip-hop turntable vinyl record scratch, two short chirps", "duration": 0.7 },
+  { "id": "spray", "prompt": "short spray paint can hiss burst, graffiti tag, close mic", "duration": 0.8 },
+  { "id": "marker", "prompt": "fat marker pen squeak scribble on paper, quick strike-through", "duration": 0.6 },
+  { "id": "page", "prompt": "crisp comic book page flip turn, paper whoosh", "duration": 0.6 },
+  { "id": "stamp", "prompt": "heavy rubber stamp slam thud on a desk, punchy", "duration": 0.5 },
+  { "id": "pop", "prompt": "loud punchy cartoon bubble pop, single crisp pop, close mic", "duration": 0.5 },
+  { "id": "zap", "prompt": "quick electric zap energy spark, comic book", "duration": 0.6 },
+  { "id": "riser", "prompt": "hip-hop trap riser with accelerating snare roll build-up, tension", "duration": 2.5 },
+  { "id": "click", "prompt": "crisp soft UI click tap, modern app interface", "duration": 0.5 },
+  { "id": "ding", "prompt": "bright positive success chime ding, short", "duration": 0.9 },
+  { "id": "typing", "prompt": "fast mechanical keyboard typing burst", "duration": 1.2 },
+  { "id": "boing", "prompt": "playful cartoon boing spring bounce", "duration": 0.6 },
+  { "id": "rewind", "prompt": "quick tape rewind stop effect, record slowdown, glitchy transition", "duration": 0.9 },
+  { "id": "shimmer", "prompt": "magical sparkle shimmer, soft twinkling glitter", "duration": 1.4 },
+  { "id": "soft-bell", "prompt": "soft warm bell tone with long gentle reverb tail, calm peaceful ending", "duration": 4 }
+]

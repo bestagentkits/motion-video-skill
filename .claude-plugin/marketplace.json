@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "motion-video-skill",
+  "description": "Beat-synced motion-graphic video production as an agent skill, from BestAgentKits.",
+  "version": "1.0.0",
+  "owner": {
+    "name": "BestAgentKits"
+  },
+  "plugins": [
+    {
+      "name": "motion-video",
+      "displayName": "Motion Video",
+      "source": "./",
+      "description": "Produce beat-synced 1080p motion-graphic videos in HyperFrames (HTML + GSAP) with an AI voice-over, Vietnamese karaoke captions, SFX and generated music, in one of two proven styles.",
+      "version": "1.0.0",
+      "author": {
+        "name": "BestAgentKits"
+      },
+      "homepage": "https://github.com/bestagentkits/motion-video-skill",
+      "repository": "https://github.com/bestagentkits/motion-video-skill",
+      "license": "MIT",
+      "category": "media",
+      "tags": [
+        "video",
+        "motion-graphic",
+        "hyperframes",
+        "gsap",
+        "voice-over",
+        "beat-sync"
+      ]
+    }
+  ]
+}

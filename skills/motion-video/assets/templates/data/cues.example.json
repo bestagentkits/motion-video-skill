@@ -1,0 +1,79 @@
+[
+  { "sfx": "scratch", "abs": 0.05, "vol": 0.45 },
+  { "sfx": "punch", "scene": "s01-cover", "at": 0.35, "vol": 0.5 },
+  { "sfx": "spray", "scene": "s01-cover", "at": 1.0, "vol": 0.3 },
+  { "sfx": "boom", "scene": "s01-cover", "word": "twelve", "vol": 0.45 },
+  { "sfx": "spray", "scene": "s01-cover", "word": "powers", "vol": 0.35 },
+
+  { "sfx": "page", "scene": "s02-stats", "at": 0, "vol": 0.45 },
+  { "sfx": "pop", "scene": "s02-stats", "word": "five", "vol": 0.35 },
+  { "sfx": "pop", "scene": "s02-stats", "word": "eighteen", "vol": 0.35 },
+  { "sfx": "riser", "beat": 31, "vol": 0.35 },
+  { "sfx": "swing", "scene": "s02-stats", "word": "go", "vol": 0.5 },
+
+  { "sfx": "boom", "beat": 40, "vol": 0.6 },
+  { "sfx": "punch", "scene": "s03-jev", "word": "jev", "vol": 0.45 },
+  { "sfx": "boing", "scene": "s03-jev", "word": "asks", "vol": 0.35 },
+  { "sfx": "click", "scene": "s03-jev", "word": "off", "vol": 0.35 },
+  { "sfx": "click", "scene": "s03-jev", "word": "shadow", "vol": 0.35 },
+  { "sfx": "click", "scene": "s03-jev", "word": "gate", "vol": 0.35 },
+  { "sfx": "stamp", "scene": "s03-jev", "word": "call", "nth": 2, "vol": 0.45 },
+
+  { "sfx": "glitch-warp", "scene": "s04-providers", "at": 0, "vol": 0.45 },
+  { "sfx": "pop", "scene": "s04-providers", "word": "cloudflare", "vol": 0.3 },
+  { "sfx": "pop", "scene": "s04-providers", "word": "clinepass", "vol": 0.3 },
+  { "sfx": "pop", "scene": "s04-providers", "word": "vercel", "vol": 0.3 },
+  { "sfx": "pop", "scene": "s04-providers", "word": "opencode", "vol": 0.3 },
+  { "sfx": "zap", "scene": "s04-providers", "word": "max", "vol": 0.5 },
+
+  { "sfx": "swing", "scene": "s05-voice", "at": 0, "vol": 0.45 },
+  { "sfx": "scratch", "scene": "s05-voice", "word": "plot", "vol": 0.5 },
+  { "sfx": "shimmer", "scene": "s05-voice", "word": "flash", "vol": 0.4 },
+
+  { "sfx": "glitch-warp", "scene": "s06-mcp-oauth", "at": 0, "vol": 0.4 },
+  { "sfx": "click", "scene": "s06-mcp-oauth", "word": "registration", "vol": 0.3 },
+  { "sfx": "stamp", "scene": "s06-mcp-oauth", "word": "encrypted", "vol": 0.45 },
+
+  { "sfx": "page", "scene": "s07-workflows", "at": 0, "vol": 0.45 },
+  { "sfx": "click", "scene": "s07-workflows", "word": "wire", "vol": 0.3 },
+  { "sfx": "click", "scene": "s07-workflows", "word": "cron", "vol": 0.3 },
+  { "sfx": "typing", "scene": "s07-workflows", "word": "inspect", "vol": 0.3 },
+
+  { "sfx": "swing", "scene": "s08-handoff", "at": 0, "vol": 0.45 },
+  { "sfx": "boing", "scene": "s08-handoff", "word": "human", "nth": 2, "vol": 0.35 },
+  { "sfx": "ding", "scene": "s08-handoff", "word": "person", "vol": 0.4 },
+
+  { "sfx": "boom", "beat": 152, "vol": 0.6 },
+  { "sfx": "zap", "scene": "s09-backup", "word": "r2", "vol": 0.45 },
+  { "sfx": "swing", "scene": "s09-backup", "word": "export", "vol": 0.4 },
+  { "sfx": "spray", "scene": "s09-backup", "word": "drama", "vol": 0.4 },
+
+  { "sfx": "glitch-warp", "scene": "s10-super-agent", "at": 0, "vol": 0.5 },
+  { "sfx": "punch", "scene": "s10-super-agent", "word": "super", "vol": 0.5 },
+  { "sfx": "pop", "scene": "s10-super-agent", "word": "workspace", "vol": 0.35 },
+
+  { "sfx": "page", "scene": "s11-cli-mcp", "at": 0, "vol": 0.4 },
+  { "sfx": "typing", "scene": "s11-cli-mcp", "word": "cli", "vol": 0.35 },
+  { "sfx": "zap", "scene": "s11-cli-mcp", "word": "drive", "vol": 0.4 },
+
+  { "sfx": "swing", "scene": "s12-advisor", "at": 0, "vol": 0.4 },
+  { "sfx": "marker", "scene": "s12-advisor", "word": "watches", "vol": 0.35 },
+  { "sfx": "boom", "beat": 200, "vol": 0.6 },
+  { "sfx": "punch", "scene": "s12-advisor", "word": "blockers", "vol": 0.45 },
+  { "sfx": "stamp", "scene": "s12-advisor", "word": "bite", "vol": 0.45 },
+
+  { "sfx": "glitch-warp", "scene": "s13-workstations", "at": 0, "vol": 0.4 },
+  { "sfx": "typing", "scene": "s13-workstations", "word": "ssh", "vol": 0.35 },
+  { "sfx": "marker", "scene": "s13-workstations", "word": "log", "vol": 0.4 },
+
+  { "sfx": "swing", "scene": "s14-memory", "at": 0, "vol": 0.45 },
+  { "sfx": "zap", "scene": "s14-memory", "word": "sharper", "vol": 0.4 },
+  { "sfx": "shimmer", "scene": "s14-memory", "word": "workbench", "vol": 0.4 },
+
+  { "sfx": "rewind", "scene": "s15-stability", "at": 0, "vol": 0.45 },
+  { "sfx": "stamp", "scene": "s15-stability", "word": "fixes", "vol": 0.45 },
+
+  { "sfx": "shimmer", "scene": "s16a-outro", "word": "coming", "vol": 0.3 },
+  { "sfx": "soft-bell", "scene": "s16c-outro", "word": "september", "vol": 0.4 },
+  { "sfx": "marker", "abs": 147.2, "vol": 0.3 }
+]

@@ -1,0 +1,35 @@
+{
+  "release": "v1.2.0",
+  "source": "https://example.com/changelog/v1.2.0",
+  "voice": {
+    "model": "gemini-3.8-flash-tts",
+    "voice": "Fenrir",
+    "style": "Hyped trailer narrator. Fast, punchy, playful, crisp diction, dramatic little pauses before reveals."
+  },
+  "outroStyle": "Calm, warm and intimate, slow and soft, a quiet hopeful promise at the end of a movie.",
+  "scenes": [
+    {
+      "id": "s01-cover",
+      "lines": [
+        {
+          "en": "Yo! Acme presents: version 1.2.",
+          "say": "Yo! Acme presents: version one point two.",
+          "vi": "Yo! Acme giới thiệu: phiên bản 1.2."
+        },
+        { "en": "One app. Three new powers.", "vi": "Một app. Ba siêu năng lực mới." }
+      ]
+    },
+    {
+      "id": "s02-power-01",
+      "lines": [
+        { "en": "Power one: offline mode.", "vi": "Năng lực 1: chế độ offline." },
+        { "en": "Your work keeps going when the Wi-Fi does not.", "vi": "Mất Wi-Fi, công việc vẫn chạy tiếp." }
+      ]
+    },
+    {
+      "id": "s09-outro",
+      "outro": true,
+      "lines": [{ "en": "Coming soon.", "vi": "Sắp ra mắt." }]
+    }
+  ]
+}

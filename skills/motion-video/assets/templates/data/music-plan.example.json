@@ -1,0 +1,13 @@
+{
+  "positive_global_styles": ["instrumental", "animated superhero movie soundtrack", "cinematic hip-hop", "exactly 110 bpm", "steady 4/4 grid", "punchy boom-bap kick and snare", "heavy 808 bass", "crisp trap hi-hats", "turntable scratches", "orchestral brass stabs", "gritty punk guitar", "glitchy synth arps", "loud and present", "confident swagger", "polished modern mix"],
+  "negative_global_styles": ["vocals", "singing", "rap vocals", "lyrics", "spoken word", "choir", "sad", "slow", "tempo changes", "ambient", "long silence"],
+  "sections": [
+    { "section_name": "Cold Open", "positive_local_styles": ["turntable scratch hits", "filtered boom-bap beat", "808 slides", "brass stings", "street-cool anticipation"], "negative_local_styles": ["full drop"], "duration_ms": 10909, "lines": [] },
+    { "section_name": "Build", "positive_local_styles": ["snare roll accelerating", "rising riser", "glitch stutters", "tension", "one beat of total silence at the very end"], "negative_local_styles": ["full drop"], "duration_ms": 10909, "lines": [] },
+    { "section_name": "Drop A", "positive_local_styles": ["explosive full-energy hip-hop drop", "hard kick and snare every bar", "big 808 bass", "brass stab hook", "punk guitar power chords", "scratches"], "negative_local_styles": ["breakdown"], "duration_ms": 26182, "lines": [] },
+    { "section_name": "Groove B", "positive_local_styles": ["bouncy head-nod groove", "kick and snare keep playing", "funky bassline", "glitchy synth plucks", "ends with a snare fill and riser"], "negative_local_styles": ["silence", "no drums"], "duration_ms": 34909, "lines": [] },
+    { "section_name": "Drop C", "positive_local_styles": ["bigger second drop", "orchestral brass and 808 together", "double-time hi-hats", "punk guitar", "heroic energy"], "negative_local_styles": ["breakdown"], "duration_ms": 26182, "lines": [] },
+    { "section_name": "Final Drop", "positive_local_styles": ["final hardest drop", "brass hook with guitar and scratches", "triumphant", "full drums until the last bar"], "negative_local_styles": ["fade"], "duration_ms": 24000, "lines": [] },
+    { "section_name": "Tail", "positive_local_styles": ["drums stop", "one sustained brass chord", "vinyl crackle", "reverb tail fading"], "negative_local_styles": ["drums", "new melody"], "duration_ms": 10909, "lines": [] }
+  ]
+}

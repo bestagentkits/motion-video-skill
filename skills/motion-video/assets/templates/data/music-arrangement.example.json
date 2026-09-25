@@ -1,0 +1,19 @@
+{
+  "source": "assets/audio/music/bgm-raw.mp3",
+  "output": "assets/audio/music/bgm.flac",
+  "bpm": 110,
+  "beat0": 0.04,
+  "crossfade": 0.025,
+  "fadeOut": { "beat": 244, "seconds": 6.5 },
+  "segments": [
+    { "to": [0, 16], "from": 0, "role": "intro" },
+    { "to": [16, 38], "from": 52, "role": "build into drop A (the source's own build), cut before the silent stop" },
+    { "to": [40, 76], "from": 76, "role": "drop A" },
+    { "to": [76, 88], "from": 164, "role": "breakdown" },
+    { "to": [88, 120], "from": 16, "role": "groove" },
+    { "to": [120, 140], "from": 236, "role": "groove" },
+    { "to": [140, 188], "from": 116, "role": "build + drop C" },
+    { "to": [188, 244], "from": 180, "role": "build + final drop" },
+    { "to": [244, 256], "from": 252, "role": "tail" }
+  ]
+}

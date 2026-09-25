@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "motion-video",
+  "description": "Beat-synced 1080p motion-graphic videos in HyperFrames (HTML + GSAP) with an AI voice-over, karaoke captions, SFX and generated music.",
+  "version": "1.0.0",
+  "author": {
+    "name": "BestAgentKits"
+  },
+  "homepage": "https://github.com/bestagentkits/motion-video-skill",
+  "repository": "https://github.com/bestagentkits/motion-video-skill",
+  "license": "MIT",
+  "keywords": [
+    "motion-graphic",
+    "video",
+    "hyperframes",
+    "gsap",
+    "voice-over",
+    "captions",
+    "beat-sync"
+  ]
+}
