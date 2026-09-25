@@ -35,7 +35,7 @@ and by ChatGPT/Codex at once, without duplicating a single file.
 - **Change the skill only when the task says so.** `skills/motion-video/` is a
   working, already-shipped skill. Packaging chores do not license edits to its
   scripts or its pipeline references.
-- **Never print or commit API keys.** Credentials belong in `multix`'s own
+- **Never print or commit API keys.** Credentials belong in the `multix` CLI's own
   configuration, never in project files, plans or reports.
 
 ## Language and layout

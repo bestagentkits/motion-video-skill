@@ -135,7 +135,7 @@ locations work, depending on the agent and the scope you want:
 | The `multix` CLI, authenticated with a Gemini key and an ElevenLabs key | Voice-over, sound effects, music composition plans and forced alignment. |
 | `npx --yes hyperframes@0.7.99` | Lint, check, snapshot, preview and render. No install step is needed. |
 
-Keep API keys in `multix`'s own configuration. The skill never prints key values
+Keep API keys in the `multix` CLI's own configuration. The skill never prints key values
 and never writes them into project files, plans or reports.
 
 ## Quick start
