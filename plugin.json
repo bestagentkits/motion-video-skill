@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "motion-video",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Beat-synced 1080p motion-graphic videos in HyperFrames (HTML + GSAP) with an AI voice-over, karaoke captions, SFX and generated music.",
   "author": {
     "name": "BestAgentKits",
@@ -25,7 +25,7 @@
       "interface": {
         "displayName": "Motion Video",
         "shortDescription": "Beat-synced motion-graphic videos with AI voice-over and karaoke captions.",
-        "longDescription": "Produces a 1920x1080 30 fps motion-graphic video whose scene cuts land on the music's beats and whose reveals land on the spoken words. The pipeline is scripted end to end: facts to script, multix audio generation, forced alignment, beat grid, bar-spliced music, timeline and mix, HyperFrames HTML composition, validation, render, remux and social encode. Includes two proven visual styles, reference tooling for beat fitting and mix balance, and a project scaffold.",
+        "longDescription": "Produces a 1920x1080 30 fps motion-graphic video whose scene cuts land on the music's beats and whose reveals land on the spoken words. The pipeline is scripted end to end: facts to script, multix audio generation, forced alignment, beat grid, bar-spliced music, timeline and mix, HyperFrames HTML composition, validation, render, remux and social encode. Includes two proven motion grammars with a per-video palette the user picks from three generated style frames, reference tooling for beat fitting and mix balance, and a project scaffold.",
         "developerName": "BestAgentKits",
         "category": "Productivity",
         "websiteURL": "https://github.com/bestagentkits/motion-video-skill",
