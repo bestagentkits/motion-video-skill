@@ -16,12 +16,21 @@ copies; `<skill>` is this skill's directory.
   assets/fonts/              local TTF files (OFL/Apache fonts from Google Fonts)
   assets/images/             baked texture tiles (PNG)
   assets/audio/{vo,sfx,music}/
+  design/                    directions.md, directions/<a|b|c>.webp, style.json (chosen before scaffolding)
   renders/
 ```
 
 Start the data files from `<skill>/assets/templates/data/*.example.json`.
 Keep one project per video; a restyle of an existing video is a new project dir
 so the first edition stays untouched.
+
+## 0.5 Style direction (mandatory user gate)
+
+Before copying templates or writing the script, follow `style-direction.md`:
+three directions, one marked "(Recommended)" for the best domain fit → three
+style frames through multix → ask the user and end the turn → the user picks →
+`design/style.json`. No brief, brand book or delegation note skips it. Every
+later step reads colours and fonts from that file.
 
 ## 1. Facts and script
 
@@ -86,7 +95,8 @@ visible or audible defect; fix the anchor or the cue rather than ignoring it.
 
 ## 6. Composition
 
-Author `index.html` against `composition-contract.md` and one style reference.
+Author `index.html` against `composition-contract.md`, the grammar's style
+reference and `design/style.json` (tokens in `:root`, fonts in `assets/fonts/`).
 Choreograph each scene with `W(sid, "word")` so reveals land on the spoken word.
 
 ## 7. Validate
@@ -144,4 +154,5 @@ by this project, and stop it when the session ends.
 | Script text of a scene | `generate-audio-assets vo --only=<id> --force` → `align-voiceover --force` → `build-timeline` |
 | Music track | `fit-beat-grid` → edit arrangement → `arrange-music` → `verify-arrangement` → `build-timeline` |
 | Anchors / cues | `build-timeline` (audio changes) or `--no-audio` (captions/timing only) |
+| Style (palette/fonts) | edit `design/style.json` → `:root` tokens + fonts → `lint` → `check` → `render` → remux |
 | Visuals only | `lint` → `check` → `render` → remux |

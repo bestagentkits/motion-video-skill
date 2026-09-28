@@ -10,7 +10,13 @@ voice Fenrir, drops at beats 40/152/200, signature "Zuey".
 Choose it for hype launches, social cuts and anything that should feel young
 and playful. Inspired by the look only: no Marvel names, logos or characters.
 
-## Tokens
+## Tokens (reference edition only)
+
+These are the Dewee v3.34 comic edition's colours. A new video takes its
+palette from `design/style.json` (see `style-direction.md`). Keep the grammar's
+roles: a dark ink, a paper tone, two misregistration colours (the reference's
+cyan/magenta) and one highlight fill (the reference's yellow), mapped from
+ink, surface, accent, accent2 and captionHl.
 
 ```css
 --ink: #0d0a1a; --paper: #fff6e5; --cyan: #19d3ff; --magenta: #ff2e9a;
@@ -47,7 +53,7 @@ frames in the renderer.
 - `.hl`: Anton uppercase, yellow fill, 3 px ink stroke, text-shadow cyan/magenta
   offset by `var(--rx)` plus a stacked ink extrusion, `distress.png` mask.
 - `.kick`: yellow Bangers caption box rotated −3°, hard ink shadow.
-- Mascot: purple blob with cyan/magenta ghost copies behind it (print
+- Mascot: blob in the accent colour with misregistration ghost copies behind it (print
   misregistration), halftone shading clipped to the body, accessories.
 - HUD: a tilted comic corner box, "DEWEE COMICS / No. 01 / 12", flip counter
   and progress segments.

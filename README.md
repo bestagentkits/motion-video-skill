@@ -27,15 +27,19 @@ are large and provider-licensed.
 Each run follows one fixed pipeline, and every step writes the file the next step
 reads, so the order matters:
 
-1. Pin the outcome: topic and sources, style, duration, voice language, ending.
-2. Scaffold `assets/videos/<slug>/` from the bundled templates.
-3. Generate the voice-over, sound effects and music through the `multix` CLI.
-4. Align the voice-over to the script, so every word has a real timestamp.
-5. Fit the beat grid, then splice music bars so the drops fall where the script
+1. Pin the outcome: topic and sources, energy, brand colours, duration, voice
+   language, ending.
+2. Choose the style: three style frames, one marked Recommended for the
+   project's domain. The user picks one before anything else is built.
+3. Scaffold `assets/videos/<slug>/` from the bundled templates.
+4. Generate the voice-over, sound effects and music through the `multix` CLI.
+5. Align the voice-over to the script, so every word has a real timestamp.
+6. Fit the beat grid, then splice music bars so the drops fall where the script
    needs them.
-6. Build the timeline and the audio mix, then measure the voice/music balance.
-7. Author `index.html` against the composition contract and the chosen style.
-8. Lint, check, snapshot and render with HyperFrames, remux the untouched mix,
+7. Build the timeline and the audio mix, then measure the voice/music balance.
+8. Author `index.html` against the composition contract, the grammar and the
+   chosen `design/style.json`.
+9. Lint, check, snapshot and render with HyperFrames, remux the untouched mix,
    and encode a smaller social version.
 
 A run is finished only when the measurable checks pass: `hyperframes lint` and
@@ -43,9 +47,13 @@ A run is finished only when the measurable checks pass: `hyperframes lint` and
 4–6 dB under speech, 1920×1080 at 30 fps, and EBU R128 around −14 LUFS with a
 true peak no higher than −1 dBFS.
 
-## Two styles
+## Two motion grammars
 
-| Style | Style reference | Demo | Feel |
+Each grammar fixes layers, components, transitions and caption mechanics. The
+palette and type are chosen per video, so the reference editions' colours are
+not a default.
+
+| Grammar | Style reference | Demo | Feel |
 |---|---|---|---|
 | Comic multiverse | [`references/style-comic-spiderverse.md`](skills/motion-video/references/style-comic-spiderverse.md) | [151 s edition](https://x.com/goon_nguyen/status/2103332658151555231) | loud, playful, hand-made |
 | Glass keynote | [`references/style-glass-keynote.md`](skills/motion-video/references/style-glass-keynote.md) | 144 s edition | premium, calm, clear |
@@ -180,8 +188,9 @@ skill directory, for example `~/.claude/skills/motion-video`.
 │   │   ├── production-pipeline.md      Every command, scaffold to social encode
 │   │   ├── audio-and-beat-sync.md      Voice, cues, music plans, splice, mix
 │   │   ├── composition-contract.md     TIMING shape, helpers, determinism
-│   │   ├── style-glass-keynote.md      Tokens, layers, transitions, captions
-│   │   └── style-comic-spiderverse.md  The second style, same contract
+│   │   ├── style-direction.md          Three style frames, the choice gate, style.json
+│   │   ├── style-glass-keynote.md      Layers, transitions, captions; reference tokens
+│   │   └── style-comic-spiderverse.md  The second grammar, same contract
 │   ├── scripts/
 │   │   ├── fit-beat-grid.py            BPM, BEAT0 and a per-bar kick/energy table
 │   │   ├── verify-arrangement.py       Splice lag per segment; exits 1 on drift

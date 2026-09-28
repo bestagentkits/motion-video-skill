@@ -11,8 +11,8 @@
       "name": "motion-video",
       "displayName": "Motion Video",
       "source": "./",
-      "description": "Produce beat-synced 1080p motion-graphic videos in HyperFrames (HTML + GSAP) with an AI voice-over, Vietnamese karaoke captions, SFX and generated music, in one of two proven styles.",
-      "version": "1.0.0",
+      "description": "Produce beat-synced 1080p motion-graphic videos in HyperFrames (HTML + GSAP) with an AI voice-over, Vietnamese karaoke captions, SFX and generated music, on one of two proven motion grammars with a per-video style picked from three generated style frames.",
+      "version": "1.1.0",
       "author": {
         "name": "BestAgentKits"
       },

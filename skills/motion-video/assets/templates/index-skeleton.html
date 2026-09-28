@@ -2,7 +2,8 @@
 <!--
   motion-video composition skeleton (HyperFrames 0.7.99 + GSAP).
   Copy to <project>/index.html, then run `node scripts/build-timeline.mjs` to inject window.TIMING.
-  Replace the style tokens and the scene markup with one of the style references
+  Fill the :root tokens and fonts from design/style.json (references/style-direction.md),
+  then build the scene markup with the grammar's style reference
   (references/style-glass-keynote.md or references/style-comic-spiderverse.md).
 -->
 <html lang="en" data-resolution="landscape">
@@ -14,7 +15,13 @@
     <style>
       /* Fonts must be local files under assets/fonts so renders are deterministic. */
       @font-face { font-family: "Be Vietnam Pro"; src: url("assets/fonts/BeVietnamPro-Bold.ttf") format("truetype"); font-weight: 700; font-display: block; }
-      :root { --bg: #070817; --ink: #f5f3ff; --accent: #c4b5fd; }
+      /* Placeholder greys on purpose: replace every token from design/style.json so a forgotten
+         palette is obvious in snapshots. */
+      :root {
+        --bg: #161616; --surface: #242424; --ink: #f2f2f2; --mute: #a3a3a3;
+        --accent: #d4d4d4; --accent-2: #8a8a8a; --ok: #9ca3af; --warn: #9ca3af; --fail: #9ca3af;
+        --cap-bg: rgba(0, 0, 0, 0.72); --cap-ink: #ffffff; --cap-unread: rgba(255, 255, 255, 0.5); --cap-hl: #d4d4d4;
+      }
       * { box-sizing: border-box; }
       html, body { margin: 0; background: var(--bg); }
       #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: "Be Vietnam Pro", sans-serif; }
@@ -27,10 +34,10 @@
       #fade { background: #000; opacity: 1; pointer-events: none; }
       /* captions stay left of the signature; bottom band is reserved for them */
       .cap { position: absolute; left: 0; width: 1660px; bottom: 44px; display: flex; justify-content: center; }
-      .cap-box { max-width: 1400px; padding: 12px 28px; border-radius: 18px; background: rgba(10, 8, 30, 0.72); font: 700 44px/1.3 "Be Vietnam Pro"; text-align: center; }
-      .cw { color: rgba(255, 255, 255, 0.5); }
+      .cap-box { max-width: 1400px; padding: 12px 28px; border-radius: 18px; background: var(--cap-bg); font: 700 44px/1.3 "Be Vietnam Pro"; text-align: center; }
+      .cw { color: var(--cap-unread); }
       #sig { right: 40px; bottom: 22px; width: 250px; height: 130px; }
-      #sig-txt { position: absolute; right: 18px; bottom: 26px; font: 72px/1 "Be Vietnam Pro"; color: #fff; }
+      #sig-txt { position: absolute; right: 18px; bottom: 26px; font: 72px/1 "Be Vietnam Pro"; color: var(--ink); }
       #sig svg { position: absolute; left: 0; top: 0; }
     </style>
   </head>
@@ -140,6 +147,10 @@
         draw("#sig-line", 1.45, 0.35, "power2.out");
 
         // ---------- Vietnamese karaoke captions ----------
+        // GSAP cannot tween to var(); resolve the style tokens once before building tweens
+        const css = getComputedStyle(document.documentElement);
+        const CAP_HL = css.getPropertyValue("--cap-hl").trim();
+        const CAP_INK = css.getPropertyValue("--cap-ink").trim();
         const capLayer = $("#captions");
         T.captions.forEach((c) => {
           const cap = document.createElement("div");
@@ -159,9 +170,9 @@
           tl.fromTo(cap, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.14, ease: "power2.out" }, c.start);
           tl.to(cap, { autoAlpha: 0, duration: 0.12, ease: "power1.in" }, Math.max(c.start + 0.3, c.end - 0.12));
           c.words.forEach(([, s], j) => {
-            tl.to(spans[j], { color: "#e9d5ff", duration: 0.05 }, s);
+            tl.to(spans[j], { color: CAP_HL, duration: 0.05 }, s);
             const next = j < c.words.length - 1 ? c.words[j + 1][1] : Math.max(s + 0.35, c.end - 0.4);
-            tl.to(spans[j], { color: "#ffffff", duration: 0.12 }, next);
+            tl.to(spans[j], { color: CAP_INK, duration: 0.12 }, next);
           });
         });
 
